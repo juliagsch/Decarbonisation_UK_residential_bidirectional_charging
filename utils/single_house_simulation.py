@@ -45,7 +45,7 @@ for archetype in archetypes:
                     #command = f"../compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For EV only (no PV) scenario
-                    command = f"../compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 no_ev ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    command = f"../compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For PV only (no EV) scenario
                     #command = f"../compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
