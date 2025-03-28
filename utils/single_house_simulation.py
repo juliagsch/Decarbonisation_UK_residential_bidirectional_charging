@@ -4,16 +4,16 @@ import re
 import os
 
 # Function to get paths of house files
-def get_house_files():
+def get_house_files(archetype):
     # Changed path to go up one level
-    return [f for f in os.listdir("../data/load/") if f.endswith('.txt')]
+    return [f for f in os.listdir(f"./data/load/{archetype}/") if f.endswith('.txt')]
 
 # Base path for the files
-base_path = os.path.abspath("../data/load/")
-solar_path = os.path.abspath("../data/solar/")
+base_path = os.path.abspath("./data/load/")
+solar_path = os.path.abspath("./data/solar/")
 
 # Archetypes and their corresponding folders (kept for compatibility)
-archetypes = ["Sample"]  # Modified to use single sample instead of different archetypes
+archetypes = ["Detached", "Semi-detached", "Terraced"]  # Modified to use single sample instead of different archetypes
 operations = ["safe_unidirectional", "hybrid_bidirectional"]
 wfh_types = ["T1", "T2", "T3"]
 solar_conditions = {"worst": "Lerwick_pv.txt", "best": "Weymouth_pv.txt"}
@@ -23,8 +23,8 @@ results = []
 
 # Iterate over configurations
 for archetype in archetypes:
-    for house_file in get_house_files():
-        house_file_path = os.path.join(base_path, house_file)
+    for house_file in get_house_files(archetype):
+        house_file_path = os.path.join(base_path, archetype, house_file)
         
         # Check if the house file exists
         if not os.path.exists(house_file_path):
@@ -42,19 +42,19 @@ for archetype in archetypes:
                         continue  # Skip this solar file if it does not exist
                     
                     # Default: PV and EV scenario
-                    #command = f"../compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    command = f"./compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For EV only (no PV) scenario
-                    command = f"../compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For PV only (no EV) scenario
-                    #command = f"../compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    #command = f"./compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For PV, EV, and storage scenario
-                    #command = f"../compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For storage, EV, and PV scenario (alternative implementation)
-                    #command = f"../compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ../data/ev_usage/merged_{wfh_type}_UK.csv 0 4"
+                    #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
 
                     print("Executing command: " + command)
                     
@@ -78,4 +78,4 @@ for archetype in archetypes:
 
 # Convert results to DataFrame and save to CSV
 df_results = pd.DataFrame(results)
-df_results.to_csv("../data/simulation_results/household_simulation_results.csv", index=False)
+df_results.to_csv("./data/simulation_results/household_simulation_results.csv", index=False)
