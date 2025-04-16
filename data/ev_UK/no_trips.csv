@@ -1,7 +1,7 @@
 Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance (km),Travel Time (min),Distance (km),Travel Time (min)
 1,Monday,No trips,32.0,,32.0,,
 2,Tuesday,No trips,32.0,,32.0,,
-3,Wednesday,11:39,48.00,13:17,46.66,8.20,20
+3,Wednesday,No trips,32.0,,32.0,,
 4,Thursday,No trips,32.0,,32.0,,
 5,Friday,No trips,32.0,,32.0,,
 6,Saturday,No trips,32.0,,32.0,,
@@ -11,13 +11,13 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 10,Wednesday,No trips,32.0,,32.0,,
 11,Thursday,No trips,32.0,,32.0,,
 12,Friday,No trips,32.0,,32.0,,
-13,Saturday,12:04,48.00,12:59,47.25,4.59,11
+13,Saturday,No trips,32.0,,32.0,,
 14,Sunday,No trips,32.0,,32.0,,
 15,Monday,No trips,32.0,,32.0,,
 16,Tuesday,No trips,32.0,,32.0,,
 17,Wednesday,No trips,32.0,,32.0,,
 18,Thursday,No trips,32.0,,32.0,,
-19,Friday,13:26,48.00,14:23,47.22,4.76,11
+19,Friday,No trips,32.0,,32.0,,
 20,Saturday,No trips,32.0,,32.0,,
 21,Sunday,No trips,32.0,,32.0,,
 22,Monday,No trips,32.0,,32.0,,
@@ -29,7 +29,7 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 28,Sunday,No trips,32.0,,32.0,,
 29,Monday,No trips,32.0,,32.0,,
 30,Tuesday,No trips,32.0,,32.0,,
-31,Wednesday,12:27,48.00,13:57,46.77,7.49,18
+31,Wednesday,No trips,32.0,,32.0,,
 32,Thursday,No trips,32.0,,32.0,,
 33,Friday,No trips,32.0,,32.0,,
 34,Saturday,No trips,32.0,,32.0,,
@@ -37,29 +37,29 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 36,Monday,No trips,32.0,,32.0,,
 37,Tuesday,No trips,32.0,,32.0,,
 38,Wednesday,No trips,32.0,,32.0,,
-39,Thursday,12:25,48.00,13:38,47.00,6.09,15
-40,Friday,17:27,48.0,18:24,45.6,14.54,35
+39,Thursday,No trips,32.0,,32.0,,
+40,Friday,No trips,32.0,,32.0,,
 41,Saturday,No trips,32.0,,32.0,,
 42,Sunday,No trips,32.0,,32.0,,
-43,Monday,15:43,48.00,17:21,46.66,8.16,20
+43,Monday,No trips,32.0,,32.0,,
 44,Tuesday,No trips,32.0,,32.0,,
 45,Wednesday,No trips,32.0,,32.0,,
 46,Thursday,No trips,32.0,,32.0,,
 47,Friday,No trips,32.0,,32.0,,
-48,Saturday,18:15,48.00,19:24,47.06,5.75,14
+48,Saturday,No trips,32.0,,32.0,,
 49,Sunday,No trips,32.0,,32.0,,
 50,Monday,No trips,32.0,,32.0,,
 51,Tuesday,No trips,32.0,,32.0,,
-52,Wednesday,11:01,48.00,11:32,47.58,2.58,6
-53,Thursday,17:54,48.0,19:01,45.7,14.26,34
+52,Wednesday,No trips,32.0,,32.0,,
+53,Thursday,No trips,32.0,,32.0,,
 54,Friday,No trips,32.0,,32.0,,
 55,Saturday,No trips,32.0,,32.0,,
 56,Sunday,No trips,32.0,,32.0,,
 57,Monday,No trips,32.0,,32.0,,
 58,Tuesday,No trips,32.0,,32.0,,
-59,Wednesday,17:04,48.00,18:05,47.16,5.12,12
+59,Wednesday,No trips,32.0,,32.0,,
 60,Thursday,No trips,32.0,,32.0,,
-61,Friday,09:34,48.00,11:09,46.70,7.92,19
+61,Friday,No trips,32.0,,32.0,,
 62,Saturday,No trips,32.0,,32.0,,
 63,Sunday,No trips,32.0,,32.0,,
 64,Monday,No trips,32.0,,32.0,,
@@ -68,10 +68,10 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 67,Thursday,No trips,32.0,,32.0,,
 68,Friday,No trips,32.0,,32.0,,
 69,Saturday,No trips,32.0,,32.0,,
-70,Sunday,19:20,48.00,21:00,46.62,8.40,20
+70,Sunday,No trips,32.0,,32.0,,
 71,Monday,No trips,32.0,,32.0,,
 72,Tuesday,No trips,32.0,,32.0,,
-73,Wednesday,14:05,48.00,15:50,46.56,8.79,21
+73,Wednesday,No trips,32.0,,32.0,,
 74,Thursday,No trips,32.0,,32.0,,
 75,Friday,No trips,32.0,,32.0,,
 76,Saturday,No trips,32.0,,32.0,,
@@ -85,18 +85,18 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 84,Sunday,No trips,32.0,,32.0,,
 85,Monday,No trips,32.0,,32.0,,
 86,Tuesday,No trips,32.0,,32.0,,
-87,Wednesday,13:46,48.00,14:51,47.10,5.47,13
+87,Wednesday,No trips,32.0,,32.0,,
 88,Thursday,No trips,32.0,,32.0,,
 89,Friday,No trips,32.0,,32.0,,
 90,Saturday,No trips,32.0,,32.0,,
-91,Sunday,17:20,48.00,19:16,46.41,9.70,23
+91,Sunday,No trips,32.0,,32.0,,
 92,Monday,No trips,32.0,,32.0,,
 93,Tuesday,No trips,32.0,,32.0,,
 94,Wednesday,No trips,32.0,,32.0,,
 95,Thursday,No trips,32.0,,32.0,,
 96,Friday,No trips,32.0,,32.0,,
 97,Saturday,No trips,32.0,,32.0,,
-98,Sunday,13:54,48.00,14:27,47.54,2.79,7
+98,Sunday,No trips,32.0,,32.0,,
 99,Monday,No trips,32.0,,32.0,,
 100,Tuesday,No trips,32.0,,32.0,,
 101,Wednesday,No trips,32.0,,32.0,,
@@ -120,7 +120,7 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 119,Sunday,No trips,32.0,,32.0,,
 120,Monday,No trips,32.0,,32.0,,
 121,Tuesday,No trips,32.0,,32.0,,
-122,Wednesday,09:24,48.00,10:52,46.80,7.29,17
+122,Wednesday,No trips,32.0,,32.0,,
 123,Thursday,No trips,32.0,,32.0,,
 124,Friday,No trips,32.0,,32.0,,
 125,Saturday,No trips,32.0,,32.0,,
@@ -141,14 +141,14 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 140,Sunday,No trips,32.0,,32.0,,
 141,Monday,No trips,32.0,,32.0,,
 142,Tuesday,No trips,32.0,,32.0,,
-143,Wednesday,17:52,48.00,19:49,46.40,9.74,23
+143,Wednesday,No trips,32.0,,32.0,,
 144,Thursday,No trips,32.0,,32.0,,
 145,Friday,No trips,32.0,,32.0,,
 146,Saturday,No trips,32.0,,32.0,,
-147,Sunday,17:05,48.00,18:50,46.57,8.70,21
+147,Sunday,No trips,32.0,,32.0,,
 148,Monday,No trips,32.0,,32.0,,
 149,Tuesday,No trips,32.0,,32.0,,
-150,Wednesday,11:35,48.00,13:18,46.59,8.59,21
+150,Wednesday,No trips,32.0,,32.0,,
 151,Thursday,No trips,32.0,,32.0,,
 152,Friday,No trips,32.0,,32.0,,
 153,Saturday,No trips,32.0,,32.0,,
@@ -158,11 +158,11 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 157,Wednesday,No trips,32.0,,32.0,,
 158,Thursday,No trips,32.0,,32.0,,
 159,Friday,No trips,32.0,,32.0,,
-160,Saturday,18:04,48.00,18:55,47.31,4.22,10
+160,Saturday,No trips,32.0,,32.0,,
 161,Sunday,No trips,32.0,,32.0,,
 162,Monday,No trips,32.0,,32.0,,
 163,Tuesday,No trips,32.0,,32.0,,
-164,Wednesday,18:41,48.00,20:31,46.50,9.15,22
+164,Wednesday,No trips,32.0,,32.0,,
 165,Thursday,No trips,32.0,,32.0,,
 166,Friday,No trips,32.0,,32.0,,
 167,Saturday,No trips,32.0,,32.0,,
@@ -173,7 +173,7 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 172,Thursday,No trips,32.0,,32.0,,
 173,Friday,No trips,32.0,,32.0,,
 174,Saturday,No trips,32.0,,32.0,,
-175,Sunday,09:39,48.00,10:44,47.11,5.41,13
+175,Sunday,No trips,32.0,,32.0,,
 176,Monday,No trips,32.0,,32.0,,
 177,Tuesday,No trips,32.0,,32.0,,
 178,Wednesday,No trips,32.0,,32.0,,
@@ -181,16 +181,16 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 180,Friday,No trips,32.0,,32.0,,
 181,Saturday,No trips,32.0,,32.0,,
 182,Sunday,No trips,32.0,,32.0,,
-183,Monday,11:11,48.00,11:46,47.51,2.97,7
-184,Tuesday,19:08,48.00,21:06,46.39,9.85,24
-185,Wednesday,11:13,48.00,13:13,46.37,9.96,24
+183,Monday,No trips,32.0,,32.0,,
+184,Tuesday,No trips,32.0,,32.0,,
+185,Wednesday,No trips,32.0,,32.0,,
 186,Thursday,No trips,32.0,,32.0,,
 187,Friday,No trips,32.0,,32.0,,
 188,Saturday,No trips,32.0,,32.0,,
 189,Sunday,No trips,32.0,,32.0,,
 190,Monday,No trips,32.0,,32.0,,
 191,Tuesday,No trips,32.0,,32.0,,
-192,Wednesday,16:20,48.00,17:56,46.69,7.96,19
+192,Wednesday,No trips,32.0,,32.0,,
 193,Thursday,No trips,32.0,,32.0,,
 194,Friday,No trips,32.0,,32.0,,
 195,Saturday,No trips,32.0,,32.0,,
@@ -198,12 +198,12 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 197,Monday,No trips,32.0,,32.0,,
 198,Tuesday,No trips,32.0,,32.0,,
 199,Wednesday,No trips,32.0,,32.0,,
-200,Thursday,19:57,48.00,21:31,46.71,7.84,19
+200,Thursday,No trips,32.0,,32.0,,
 201,Friday,No trips,32.0,,32.0,,
 202,Saturday,No trips,32.0,,32.0,,
 203,Sunday,No trips,32.0,,32.0,,
-204,Monday,17:09,48.00,18:30,46.90,6.70,16
-205,Tuesday,12:29,48.00,13:28,47.19,4.96,12
+204,Monday,No trips,32.0,,32.0,,
+205,Tuesday,No trips,32.0,,32.0,,
 206,Wednesday,No trips,32.0,,32.0,,
 207,Thursday,No trips,32.0,,32.0,,
 208,Friday,No trips,32.0,,32.0,,
@@ -216,10 +216,10 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 215,Friday,No trips,32.0,,32.0,,
 216,Saturday,No trips,32.0,,32.0,,
 217,Sunday,No trips,32.0,,32.0,,
-218,Monday,19:44,48.00,21:34,46.49,9.20,22
+218,Monday,No trips,32.0,,32.0,,
 219,Tuesday,No trips,32.0,,32.0,,
 220,Wednesday,No trips,32.0,,32.0,,
-221,Thursday,10:01,48.00,11:23,46.88,6.85,16
+221,Thursday,No trips,32.0,,32.0,,
 222,Friday,No trips,32.0,,32.0,,
 223,Saturday,No trips,32.0,,32.0,,
 224,Sunday,No trips,32.0,,32.0,,
@@ -228,7 +228,7 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 227,Wednesday,No trips,32.0,,32.0,,
 228,Thursday,No trips,32.0,,32.0,,
 229,Friday,No trips,32.0,,32.0,,
-230,Saturday,18:49,48.00,19:35,47.37,3.83,9
+230,Saturday,No trips,32.0,,32.0,,
 231,Sunday,No trips,32.0,,32.0,,
 232,Monday,No trips,32.0,,32.0,,
 233,Tuesday,No trips,32.0,,32.0,,
@@ -250,16 +250,16 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 249,Thursday,No trips,32.0,,32.0,,
 250,Friday,No trips,32.0,,32.0,,
 251,Saturday,No trips,32.0,,32.0,,
-252,Sunday,13:08,48.00,15:03,46.43,9.59,23
+252,Sunday,No trips,32.0,,32.0,,
 253,Monday,No trips,32.0,,32.0,,
-254,Tuesday,19:12,48.00,20:25,47.00,6.11,15
+254,Tuesday,No trips,32.0,,32.0,,
 255,Wednesday,No trips,32.0,,32.0,,
 256,Thursday,No trips,32.0,,32.0,,
 257,Friday,No trips,32.0,,32.0,,
 258,Saturday,No trips,32.0,,32.0,,
 259,Sunday,No trips,32.0,,32.0,,
-260,Monday,19:23,48.00,20:00,47.49,3.12,7
-261,Tuesday,19:05,48.00,19:51,47.38,3.79,9
+260,Monday,No trips,32.0,,32.0,,
+261,Tuesday,No trips,32.0,,32.0,,
 262,Wednesday,No trips,32.0,,32.0,,
 263,Thursday,No trips,32.0,,32.0,,
 264,Friday,No trips,32.0,,32.0,,
@@ -271,21 +271,21 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 270,Thursday,No trips,32.0,,32.0,,
 271,Friday,No trips,32.0,,32.0,,
 272,Saturday,No trips,32.0,,32.0,,
-273,Sunday,18:17,48.0,19:27,46.1,11.60,28
+273,Sunday,No trips,32.0,,32.0,,
 274,Monday,No trips,32.0,,32.0,,
 275,Tuesday,No trips,32.0,,32.0,,
 276,Wednesday,No trips,32.0,,32.0,,
 277,Thursday,No trips,32.0,,32.0,,
 278,Friday,No trips,32.0,,32.0,,
 279,Saturday,No trips,32.0,,32.0,,
-280,Sunday,17:43,48.00,19:18,46.70,7.93,19
+280,Sunday,No trips,32.0,,32.0,,
 281,Monday,No trips,32.0,,32.0,,
 282,Tuesday,No trips,32.0,,32.0,,
 283,Wednesday,No trips,32.0,,32.0,,
 284,Thursday,No trips,32.0,,32.0,,
 285,Friday,No trips,32.0,,32.0,,
 286,Saturday,No trips,32.0,,32.0,,
-287,Sunday,12:15,48.00,13:09,47.26,4.50,11
+287,Sunday,No trips,32.0,,32.0,,
 288,Monday,No trips,32.0,,32.0,,
 289,Tuesday,No trips,32.0,,32.0,,
 290,Wednesday,No trips,32.0,,32.0,,
@@ -303,7 +303,7 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 302,Monday,No trips,32.0,,32.0,,
 303,Tuesday,No trips,32.0,,32.0,,
 304,Wednesday,No trips,32.0,,32.0,,
-305,Thursday,13:34,48.00,14:23,47.34,4.05,10
+305,Thursday,No trips,32.0,,32.0,,
 306,Friday,No trips,32.0,,32.0,,
 307,Saturday,No trips,32.0,,32.0,,
 308,Sunday,No trips,32.0,,32.0,,
@@ -311,19 +311,18 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 310,Tuesday,No trips,32.0,,32.0,,
 311,Wednesday,No trips,32.0,,32.0,,
 312,Thursday,No trips,32.0,,32.0,,
-313,Friday,11:15,48.00,11:56,47.43,3.48,8
+313,Friday,No trips,32.0,,32.0,,
 314,Saturday,No trips,32.0,,32.0,,
-315,Sunday,14:44,48.00,16:11,46.81,7.26,17
+315,Sunday,No trips,32.0,,32.0,,
 316,Monday,No trips,32.0,,32.0,,
-317,Tuesday,12:14,48.00,14:09,46.43,9.58,23
+317,Tuesday,No trips,32.0,,32.0,,
 318,Wednesday,No trips,32.0,,32.0,,
-319,Thursday,12:52,48.00,13:36,47.40,3.65,9
-319,Thursday,19:06,47.40,19:45,46.88,3.20,8
+319,Thursday,No trips,32.0,,32.0,,
 320,Friday,No trips,32.0,,32.0,,
 321,Saturday,No trips,32.0,,32.0,,
 322,Sunday,No trips,32.0,,32.0,,
-323,Monday,19:12,48.00,20:59,46.53,8.97,22
-324,Tuesday,09:37,48.00,10:54,46.94,6.44,15
+323,Monday,No trips,32.0,,32.0,,
+324,Tuesday,No trips,32.0,,32.0,,
 325,Wednesday,No trips,32.0,,32.0,,
 326,Thursday,No trips,32.0,,32.0,,
 327,Friday,No trips,32.0,,32.0,,
@@ -354,15 +353,14 @@ Day,Weekday,Departure Time,SOC on Departure,Arrival Time,SOC on Arrival,Distance
 352,Tuesday,No trips,32.0,,32.0,,
 353,Wednesday,No trips,32.0,,32.0,,
 354,Thursday,No trips,32.0,,32.0,,
-355,Friday,11:18,48.00,12:42,46.85,6.99,17
-355,Friday,16:44,46.85,18:40,45.27,9.67,23
+355,Friday,No trips,32.0,,32.0,,
 356,Saturday,No trips,32.0,,32.0,,
 357,Sunday,No trips,32.0,,32.0,,
 358,Monday,No trips,32.0,,32.0,,
 359,Tuesday,No trips,32.0,,32.0,,
 360,Wednesday,No trips,32.0,,32.0,,
 361,Thursday,No trips,32.0,,32.0,,
-362,Friday,11:15,48.00,12:22,47.08,5.60,13
+362,Friday,No trips,32.0,,32.0,,
 363,Saturday,No trips,32.0,,32.0,,
 364,Sunday,No trips,32.0,,32.0,,
 365,Monday,No trips,32.0,,32.0,,

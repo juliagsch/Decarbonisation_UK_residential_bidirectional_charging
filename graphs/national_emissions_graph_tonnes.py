@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Load data from CSV files
-uni_best = pd.read_csv('../data/simulation_results/national_level/uni_best_all_scenarios.csv')
-uni_worst = pd.read_csv('../data/simulation_results/national_level/uni_worst_all_scenarios.csv')
-bi_best = pd.read_csv('../data/simulation_results/national_level/bi_best_all_scenarios.csv')
-bi_worst = pd.read_csv('../data/simulation_results/national_level/bi_worst_all_scenarios.csv')
+uni_best = pd.read_csv('./data/simulation_results/national_level/uni_best_all_scenarios.csv')
+uni_worst = pd.read_csv('./data/simulation_results/national_level/uni_worst_all_scenarios.csv')
+bi_best = pd.read_csv('./data/simulation_results/national_level/bi_best_all_scenarios.csv')
+bi_worst = pd.read_csv('./data/simulation_results/national_level/bi_worst_all_scenarios.csv')
 
 # Rename columns in all dataframes to change 'H+P = P' to 'P'
 def rename_columns(df):
@@ -77,6 +77,8 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
                     label = 'H + E (Uni)'
                 if scenario == 'E+P':
                     label = 'E + P (Uni)'
+                if scenario == 'E':
+                    label = 'E (Uni)'
                 if scenario == 'H+P+E+S':
                     label = 'H + P + E + S (Uni)'
 
@@ -100,6 +102,8 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
                     label = 'H + E (Bi)'
                 if scenario == 'E+P':
                     label = 'E + P (Bi)'
+                if scenario == 'E':
+                    label = 'E (Bi)'
 
                 # Plot bidirectional best scenario lines
                 sns.lineplot(x='Conversion Rate (%)', y=scenario, data=bi_best, 
@@ -117,9 +121,9 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
     plt.xlabel('Conversion Rate (%)')
     plt.ylabel('Total CO2 Emissions (Megatonnes)')
     plt.xlim([0, 125])  # Extend x-axis to 125 to fit labels
-    plt.ylim([6, 20])  # Adjust according to your data range (6 to 20 megatonnes)
+    plt.ylim([2, 14])  # Adjust according to your data range (2 to 14 megatonnes)
     plt.xticks(range(0, 101, 10))  # Ensure ticks are only up to 100
-    
+    plt.savefig("./graphs/out/national_scenarios.png")
     plt.show()
 
 # Plotting the graphs for unidirectional and bidirectional cases

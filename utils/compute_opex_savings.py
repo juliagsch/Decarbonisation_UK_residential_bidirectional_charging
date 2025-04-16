@@ -1,17 +1,22 @@
 import pandas as pd
 
 # Load the data from the CSV file that gives OPEX for each archetype x WFH x operation x solar
-file_path = '../data/simulation_results/averaged_simulation_results_Faraday.csv'
+file_path = './data/simulation_results/averaged_simulation_results_evpv.csv'
 data = pd.read_csv(file_path)
 
 # Average OPEX values computed from Faraday data for houses without EV or PV (baseline scenario)
+# Was calculated by total yearly load * 0.35
+# pre_conversion_opex = {
+#     'Terraced': 2739.301,
+#     'Semi-detached': 2904.193,
+#     'Detached': 2957.12
+# }
+
 pre_conversion_opex = {
-    'Terraced': 2739.301,
-    'Semi_Detached': 2904.193,
-    'Detached': 2957.12
+    'Terraced': 809.2498,
+    'Semi-detached': 869.9464,
+    'Detached': 917.3098
 }
-
-
 # Initialize a list to hold the results
 results = []
 
@@ -22,9 +27,18 @@ for index, row in data.iterrows():
     operation = row['Operation']
     solar = row['Solar']
     grid_cost = row['Grid Cost']
+
+    petrol_cost = 0
+
+    if 'H1' == wfh_type:
+        petrol_cost = 483.616
+    if 'H2' == wfh_type:
+        petrol_cost = 216.0732   
+    if 'H3' == wfh_type:
+        petrol_cost = 32.2877
     
     # Calculate OPEX Savings
-    opex_savings = pre_conversion_opex[archetype] - grid_cost
+    opex_savings = pre_conversion_opex[archetype] + petrol_cost - grid_cost
     
     # Append the results
     results.append({
@@ -39,6 +53,6 @@ for index, row in data.iterrows():
 results_df = pd.DataFrame(results)
 
 # Save the results to a CSV file
-results_df.to_csv('../data/simulation_results/opex_savings_results.csv', index=False)
+results_df.to_csv('./data/simulation_results/opex_savings_results.csv', index=False)
 
 print("CSV file with OPEX Savings has been created.")

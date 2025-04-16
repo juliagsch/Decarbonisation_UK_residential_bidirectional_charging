@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data from the CSV files
-file_path = '../data/simulation_results/averaged_simulation_results_Faraday.csv'  
+file_path = './data/simulation_results/averaged_simulation_results.csv'  
 data = pd.read_csv(file_path)
 
 # Adjust 'Operation' to policy categories
@@ -10,13 +10,13 @@ data['Operation Policy'] = data['Operation'].apply(lambda x: 'Unidirectional' if
 data['Operation Policy'] = pd.Categorical(data['Operation Policy'], ['Unidirectional', 'Bidirectional'], ordered=True)  # Ensure ordering
 
 # Convert Grid Emissions to kilograms and round
-data['Grid Emissions kg'] = (data['Grid Emissions'] / 1000).round().astype(int)
+data['Grid Emissions kg'] = (data['Grid Emissions']).round().astype(int)
 
 # Find the maximum y-value to set a uniform y-axis
-max_emissions = data['Grid Emissions kg'].max()
+max_emissions = 880#data['Grid Emissions kg'].max()
 
 # Define archetypes and CAH types
-archetype_order = ['Detached', 'Semi_Detached', 'Terraced']  # D, SD, T
+archetype_order = ['Detached', 'Semi-detached', 'Terraced']  # D, SD, T
 cah_types = ['H1', 'H2', 'H3']
 color_map = {'Unidirectional': '#D5F0C1', 'Bidirectional': '#80BCBD'}
 
@@ -84,6 +84,7 @@ def create_combined_co2_chart():
     plt.tick_params(axis='y', labelsize=14)
 
     plt.tight_layout()
+    plt.savefig('./graphs/out/emission_savings_ev_pv_162.png')
     plt.show()
 
 # Call the function to create the combined chart

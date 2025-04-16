@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data from the CSV file
-file_path = '../data/simulation_results/independence.csv'  # Update this path as necessary
+file_path = './data/simulation_results/averaged_simulation_results.csv'  # Update this path as necessary
 data = pd.read_csv(file_path)
 
 # Adjust 'Operation' to policy categories
@@ -10,7 +10,7 @@ data['Operation Policy'] = data['Operation'].apply(lambda x: 'Unidirectional' if
 data['Operation Policy'] = pd.Categorical(data['Operation Policy'], ['Unidirectional', 'Bidirectional'], ordered=True)
 
 # Define archetypes and CAH types
-archetype_order = ['Detached', 'Semi-Detached', 'Terraced']  # D, SD, T
+archetype_order = ['Detached', 'Semi-detached', 'Terraced']  # D, SD, T
 cah_types = ['H1', 'H2', 'H3']
 color_map = {'Unidirectional': '#D5F0C1', 'Bidirectional': '#80BCBD'}
 
@@ -29,12 +29,12 @@ def create_combined_chart():
             position_assigned = False
 
             # First loop for Unidirectional
-            filtered_uni = data[(data['CAH_Type'] == cah) & 
-                                (data['Operation Policy'] == 'Unidirectional') & 
+            filtered_uni = data[(data['CAH Type'] == cah) & 
+                                (data['Operation'] == 'safe_unidirectional') & 
                                 (data['Archetype'] == archetype)]
             if not filtered_uni.empty:
-                independence_l = filtered_uni.iloc[0]['Independence_l']
-                independence_h = filtered_uni.iloc[0]['Independence_h']
+                independence_l = filtered_uni[(data['Solar'] == 'worst')].iloc[0]['Independence']
+                independence_h = filtered_uni[(data['Solar'] == 'best')].iloc[0]['Independence']
                 range_value = independence_h - independence_l
 
                 # Draw rectangle for Unidirectional
@@ -44,12 +44,12 @@ def create_combined_chart():
                 position_assigned = True  # Mark that a bar was placed at this position
 
             # Second loop for Bidirectional, at the same x position
-            filtered_bi = data[(data['CAH_Type'] == cah) & 
-                               (data['Operation Policy'] == 'Bidirectional') & 
+            filtered_bi = data[(data['CAH Type'] == cah) & 
+                               (data['Operation'] == 'hybrid_bidirectional') & 
                                (data['Archetype'] == archetype)]
             if not filtered_bi.empty:
-                independence_l = filtered_bi.iloc[0]['Independence_l']
-                independence_h = filtered_bi.iloc[0]['Independence_h']
+                independence_l = filtered_bi[(data['Solar'] == 'worst')].iloc[0]['Independence']
+                independence_h = filtered_bi[(data['Solar'] == 'best')].iloc[0]['Independence']
                 range_value = independence_h - independence_l
 
                 # Draw rectangle for Bidirectional
@@ -89,6 +89,7 @@ def create_combined_chart():
     plt.tick_params(axis='y', labelsize=14)
 
     plt.tight_layout()
+    plt.savefig("./graphs/out/independence.png")
     plt.show()
 
 # Call the function to create the combined chart

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 # Load the data from the CSV files
 #file_path = 'averaged_simulation_results.csv'
 #LBN file below
-file_path = '../data/simulation_results/averaged_simulation_results_Faraday.csv'
+file_path = './data/simulation_results/averaged_simulation_results_evpv.csv'
 data = pd.read_csv(file_path)
 
 # Extract 'Uni' or 'Bi' from the 'Operation' column
@@ -12,9 +12,14 @@ data['Operation Policy'] = data['Operation'].apply(lambda x: 'Uni' if 'unidirect
 data['Operation Policy'] = pd.Categorical(data['Operation Policy'], categories=['Uni', 'Bi'], ordered=True)
 
 # Define archetypes and CAH types
-archetype_order = ['Detached', 'Semi_Detached', 'Terraced']  
+archetype_order = ['Detached', 'Semi-detached', 'Terraced']  
 cah_types = ['H1', 'H2', 'H3']
 color_map = {'Uni': '#C4DDFF', 'Bi': '#79DAE8'}
+
+useLBN = True
+column = "Grid Cost"
+if(useLBN):
+    column = "Total Cost"
 
 # Function to create a combined bar chart for all archetypes
 def create_combined_opex_chart():
@@ -33,8 +38,8 @@ def create_combined_opex_chart():
                 filtered = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == policy) & (data['Archetype'] == archetype)]
 
                 if len(filtered) >= 2:  # Ensure there are best and worst cases
-                    best_val = filtered.iloc[0]['Grid Cost']  # Best case
-                    worst_val = filtered.iloc[1]['Grid Cost']  # Worst case
+                    best_val = filtered.iloc[0][column]  # Best case
+                    worst_val = filtered.iloc[1][column]  # Worst case
                     ci = worst_val - best_val
 
                     # Calculate the position for the current bar
@@ -50,8 +55,8 @@ def create_combined_opex_chart():
                 filtered = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == policy) & (data['Archetype'] == archetype)]
 
                 if len(filtered) >= 2:  # Ensure there are best and worst cases
-                    best_val = filtered.iloc[0]['Grid Cost']  # Best case
-                    worst_val = filtered.iloc[1]['Grid Cost']  # Worst case
+                    best_val = filtered.iloc[0][column]  # Best case
+                    worst_val = filtered.iloc[1][column]  # Worst case
                     ci = worst_val - best_val
 
                     # Use the same position as Uni
@@ -67,12 +72,12 @@ def create_combined_opex_chart():
     plt.xlabel('Archetype', fontsize=16)  # Add x-axis label
 
     # Set y-axis limit for consistency
-    plt.ylim(500, 2250)
+    plt.ylim(0, 2200)
 
     # Center CAH labels between vertical lines
-    plt.text(1.0, 2100, 'CAH1', ha='center', va='top', fontsize=14, color='black')
-    plt.text(4.0, 2100, 'CAH2', ha='center', va='top', fontsize=14, color='black')
-    plt.text(7.0, 2100, 'CAH3', ha='center', va='top', fontsize=14, color='black')
+    plt.text(1.0, 1750, 'CAH1', ha='center', va='top', fontsize=14, color='black')
+    plt.text(4.0, 1750, 'CAH2', ha='center', va='top', fontsize=14, color='black')
+    plt.text(7.0, 1750, 'CAH3', ha='center', va='top', fontsize=14, color='black')
 
     # Add vertical lines between CAH types to separate H1, H2, and H3
     plt.axvline(x=2.5, color='black', linestyle='--')  # Centered between T of H1 and D of H2
@@ -85,6 +90,7 @@ def create_combined_opex_chart():
 
     # Increase the font size of y-ticks
     plt.tick_params(axis='y', labelsize=14)
+    plt.savefig("./graphs/out/opex_LBN.png")
 
     plt.tight_layout()
     plt.show()

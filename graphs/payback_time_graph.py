@@ -3,17 +3,17 @@ import matplotlib.pyplot as plt
 
 # Load the data from the CSV files
 try:
-    opex_savings_data = pd.read_csv('../data/simulation_results/opex_savings_results.csv')
-    capex_data = pd.read_csv('../data/simulation_results/capex_results.csv')
+    opex_savings_data = pd.read_csv('./data/simulation_results/opex_savings_results.csv')
+    # capex_data = pd.read_csv('./data/simulation_results/capex_results.csv')
 except FileNotFoundError as e:
     print(f"Error: {e}")
     exit()
 
 # Merge the data
-merged_data = pd.merge(opex_savings_data, capex_data, on=["Archetype", "CAH Type", "Operation", "Solar"])
-
+# merged_data = pd.merge(opex_savings_data, capex_data, on=["Archetype", "CAH Type", "Operation", "Solar"])
+merged_data = opex_savings_data
 # Calculate Payback Time
-merged_data['Payback Time (years)'] = merged_data['Cost'] / merged_data['OPEX Savings']
+merged_data['Payback Time (years)'] = 8400 / merged_data['OPEX Savings']
 
 # Determine Operation Policy
 merged_data['Operation Policy'] = merged_data['Operation'].apply(lambda x: 'Bidirectional' if 'bidirectional' in x else 'Unidirectional')
@@ -21,7 +21,7 @@ merged_data['Operation Policy'] = pd.Categorical(merged_data['Operation Policy']
 print(merged_data)
 
 # Define archetypes and CAH types
-archetype_order = ['Detached', 'Semi_Detached', 'Terraced']  
+archetype_order = ['Detached', 'Semi-detached', 'Terraced']  
 cah_types = ['H1', 'H2', 'H3']
 color_map = {'Unidirectional': '#BDE2B9', 'Bidirectional': '#73C5C5'}
 
@@ -108,7 +108,7 @@ def create_payback_time_chart():
     plt.xlabel('Archetype', fontsize=16)  # Add x-axis label
 
     # Set y-axis limit for consistency
-    plt.ylim(0, 17)
+    plt.ylim(0, 50)
 
     # Center CAH labels between vertical lines
     plt.text(1.0, 16, 'CAH1', ha='center', va='top', fontsize=14, color='black')
@@ -131,6 +131,7 @@ def create_payback_time_chart():
     plt.xlim(-0.5, 8.5)  # Add extra space on both sides
 
     plt.tight_layout()
+    plt.savefig("./graphs/out/payback.png")
     plt.show()
 
 # Call the function to create the payback time chart

@@ -3,10 +3,10 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 
-uni_best_reduction = pd.read_csv('../data/simulation_results/national_level/percentage_reduction_uni_best.csv')
-uni_worst_reduction = pd.read_csv('../data/simulation_results/national_level/percentage_reduction_uni_worst.csv')
-bi_best_reduction = pd.read_csv('../data/simulation_results/national_level/percentage_reduction_bi_best.csv')
-bi_worst_reduction = pd.read_csv('../data/simulation_results/national_level/percentage_reduction_bi_worst.csv')
+uni_best_reduction = pd.read_csv('./data/simulation_results/national_level/percentage_reduction_uni_best.csv')
+uni_worst_reduction = pd.read_csv('./data/simulation_results/national_level/percentage_reduction_uni_worst.csv')
+bi_best_reduction = pd.read_csv('./data/simulation_results/national_level/percentage_reduction_bi_best.csv')
+bi_worst_reduction = pd.read_csv('./data/simulation_results/national_level/percentage_reduction_bi_worst.csv')
 
 # Rename columns in all dataframes to change 'H+P = P' to 'P'
 def rename_columns(df):
@@ -29,7 +29,8 @@ custom_palette = {
     'H+E+P': custom_colors[3],
     'H+E': custom_colors[1],
     'E+P': custom_colors[2],
-    'H+P+E+S': custom_colors[4]
+    'H+P+E+S': custom_colors[4],
+    'E': custom_colors[5]
 }
 
 # Function to plot the graph with simplified legend and adjusted x-axis
@@ -64,6 +65,8 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
                     label = 'H + E (Uni)'
                 if scenario == 'E+P':
                     label = 'E + P (Uni)'
+                if scenario == 'E':
+                    label = 'E (Uni)'
                 if scenario == 'H+P+E+S':
                     label = 'H + P + E + S (Uni)'
 
@@ -87,6 +90,8 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
                     label = 'H + E (Bi)'
                 if scenario == 'E+P':
                     label = 'E + P (Bi)'
+                if scenario == 'E':
+                    label = 'E (Bi)'
 
                 # Plot bidirectional best scenario lines
                 sns.lineplot(x='Conversion Rate (%)', y=scenario, data=bi_best, 
@@ -106,6 +111,7 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
     plt.ylim([80, 0])  # Set y-axis from 100 to 0 to reverse it
     plt.xticks(range(0, 101, 10), fontsize=14)  # Ensure ticks are only up to 100 with font size 14
     plt.yticks(range(0, 80, 10), [f'-{y}' for y in range(0, 80, 10)], fontsize=14)  # Set y-ticks as negative values
+    plt.savefig("./graphs/out/national_scenarios_percentage.png")
 
     plt.show()
 

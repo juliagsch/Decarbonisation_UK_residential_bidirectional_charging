@@ -3,7 +3,7 @@ import os
 
 # Load the CSV data into a DataFrame
 #data = pd.read_csv('emissions_all_scenarios.csv')
-data = pd.read_csv('../data/simulation_results/national_level/emissions_all_scenarios.csv')
+data = pd.read_csv('./data/simulation_results/national_level/emissions_all_scenarios.csv')
 
 # Define the number of households for each archetype
 household_numbers = {
@@ -16,7 +16,7 @@ household_numbers = {
 conversion_rates = list(range(0, 101, 5))  # From 0 to 100 in steps of 5%
 
 # Define the scenarios to include in the output
-included_scenarios = ["H+E", "H+P = P", "E+P", "H+E+P", "H+P+E+S"]
+included_scenarios = ["E", "H+E", "H+P = P", "E+P", "H+E+P", "H+P+E+S"]
 
 # Process the data to compute total emissions for each operation and solar combination
 def compute_total_emissions(operation, solar):
@@ -40,7 +40,6 @@ def compute_total_emissions(operation, solar):
                 try:
                     emissions_nc = data.loc[(data['Archetype'] == archetype) & 
                                             (data['Scenario'] == 'W'), 'Emissions (kg CO2)'].values[0]
-                    emissions_nc = emissions_nc + 319.5  # Add the emissions for the new FF emissions, as it was 86.5 before ans id 406 now
                 except IndexError:
                     print(f"No data for {archetype}, 'not-converted'")
                     emissions_nc = 0  # Default to zero if no data found
@@ -57,7 +56,7 @@ def compute_total_emissions(operation, solar):
     
     # Output to CSV with updated path
     df = pd.DataFrame(results)
-    output_dir = '../data/simulation_results/national_level/'
+    output_dir = './data/simulation_results/national_level/'
     
     # Create directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)

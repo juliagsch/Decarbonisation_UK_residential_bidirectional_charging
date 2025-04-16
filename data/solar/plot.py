@@ -41,7 +41,10 @@ def analyze_and_plot_daily(solar_files):
 
     for solar_file in solar_files:
         _, hourly = read_and_process_hourly(solar_file)
-        plt.plot(range(24), hourly, label=solar_file.capitalize(), marker='o')
+        label = "Lerwick"
+        if "Weymouth" in solar_file:
+            label = "Weymouth"
+        plt.plot(range(24), hourly, label=label, marker='o')
     
     plt.title('Average Hourly PV Production')
     plt.xlabel('Hour of the Day')
@@ -58,9 +61,12 @@ def analyze_and_plot_monthly(solar_files):
 
     for solar_file in solar_files:
         _, monthly = read_and_process_monthly(solar_file)
-        plt.plot(range(12), monthly, label=solar_file.capitalize(), marker='o')
+        label = "Lerwick"
+        if "Weymouth" in solar_file:
+            label = "Weymouth"
+        plt.plot(range(12), monthly, label=label, marker='o')
     
-    plt.title('Average Monthly PV Production')
+    plt.title('Average Daily PV Production')
     plt.xlabel('Month of the Year')
     plt.ylabel('Average Production per Day (kWh)')
     plt.xticks(range(12), labels=[f'{month}' for month in ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]], rotation=45)

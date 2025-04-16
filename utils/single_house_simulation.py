@@ -42,20 +42,23 @@ for archetype in archetypes:
                         continue  # Skip this solar file if it does not exist
                     
                     # Default: PV and EV scenario
-                    command = f"./compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For EV only (no PV) scenario
                     # command = f"./compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For PV only (no EV) scenario
-                    #command = f"./compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For PV, EV, and storage scenario
-                    #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
                     
                     # For storage, EV, and PV scenario (alternative implementation)
                     #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
-
+                    
+                    # No EV or PV (used to generate baseline)
+                    command = f"./compiled_code/bin_nopvnoev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    
                     print("Executing command: " + command)
                     
                     # Execute the command
@@ -63,6 +66,7 @@ for archetype in archetypes:
 
                     # Extract numbers from output
                     grid_import_match = re.search(r"Grid import: (\d+\.?\d*)", result.stdout)
+                    total_load_match = re.search(r"Total load: (\d+\.?\d*)", result.stdout)
                     total_cost_match = re.search(r"Total Cost: (\d+\.?\d*)", result.stdout)
                     
                     # Store results
@@ -73,6 +77,7 @@ for archetype in archetypes:
                         "Operation": op,
                         "Solar": solar_key,
                         "Grid Import": float(grid_import_match.group(1)) if grid_import_match else None,
+                        "Total Load": float(total_load_match.group(1)) if total_load_match else None,
                         "Total Cost": float(total_cost_match.group(1)) if total_cost_match else None
                     })
 
