@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data from the CSV files
-file_path = './data/simulation_results/averaged_simulation_results.csv'  
+file_path = './data/simulation_results/averaged_simulation_results_evpv.csv'  
 data = pd.read_csv(file_path)
 
 # Adjust 'Operation' to policy categories
@@ -35,8 +35,8 @@ def create_combined_co2_chart():
             filtered_uni = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == 'Unidirectional') & (data['Archetype'] == archetype)]
 
             if len(filtered_uni) >= 2:  # Ensure there are best and worst cases
-                best_val_uni = filtered_uni.iloc[0]['Grid Emissions kg']  # Best case
-                worst_val_uni = filtered_uni.iloc[1]['Grid Emissions kg']  # Worst case
+                best_val_uni = filtered_uni[filtered_uni['Solar'] == 'best']['Grid Emissions kg'].mean()  # Best case
+                worst_val_uni = filtered_uni[filtered_uni['Solar'] == 'worst']['Grid Emissions kg'].mean()  # Worst case
                 ci_uni = worst_val_uni - best_val_uni
 
                 uni_position = len(uni_positions)  # Current position
@@ -49,8 +49,8 @@ def create_combined_co2_chart():
             filtered_bi = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == 'Bidirectional') & (data['Archetype'] == archetype)]
 
             if len(filtered_bi) >= 2:  # Ensure there are best and worst cases
-                best_val_bi = filtered_bi.iloc[0]['Grid Emissions kg']  # Best case
-                worst_val_bi = filtered_bi.iloc[1]['Grid Emissions kg']  # Worst case
+                best_val_bi = filtered_bi[filtered_bi['Solar'] == 'best']['Grid Emissions kg'].mean()  # Best case
+                worst_val_bi = filtered_bi[filtered_bi['Solar'] == 'worst']['Grid Emissions kg'].mean()  # Worst case
                 ci_bi = worst_val_bi - best_val_bi
 
                 # Align Bidirectional bars directly under Unidirectional bars

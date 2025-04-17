@@ -1,22 +1,32 @@
 import pandas as pd
 # uncomment l.15 if there is no EV to add FF car emissions, comment l14
 # Load the simulation results CSV
-df = pd.read_csv("./data/simulation_results/household_simulation_results_evpv.csv")
+type = "noevnopv"
+df = pd.read_csv(f"./data/simulation_results/household_simulation_results_{type}.csv")
 
 # Define the conversion rates
 pounds_per_kwh = 0.35  # Default electricity cost in pounds
 gCO2_per_kwh = 162     # Default grid carbon intensity in gCO2/kWh
+gCO2_per_km_petrol = 132 # Default carbon emissions per km driven with a petrol car. Source: https://www.nimblefins.co.uk/average-co2-emissions-car-uk
 
 # Calculate Grid Emissions based on scenario:
 
 # SCENARIO 1: With EV (default)
 # Only consider grid emissions as EV charging is included in grid import
-df['Grid Emissions'] = df['Grid Import'] * gCO2_per_kwh / 1000 
+# df['Grid Emissions'] = df['Grid Import'] * gCO2_per_kwh / 1000 
 
 # SCENARIO 2: No EV
-# Uncomment the line below when running no-EV scenarios
-# This adds 406 kgCO2 to account for annual emissions from fossil fuel car
-# df['Grid Emissions'] = df['Grid Import'] * gCO2_per_kwh / 1000 + 406
+# Uncomment the lines below when running no-EV scenarios
+df['Grid Emissions'] = df['Grid Import'] * gCO2_per_kwh / 1000 
+df_T1 = pd.read_csv("./data/ev_UK/merged_ev_T1_holiday.csv")
+km_H1 = df_T1['Distance (km)'].sum()
+df_T2 = pd.read_csv("./data/ev_UK/merged_ev_T2_holiday.csv")
+km_H2 = df_T2['Distance (km)'].sum()
+df_T3 = pd.read_csv("./data/ev_UK/merged_ev_T3_holiday.csv")
+km_H3 = df_T3['Distance (km)'].sum()
+df.loc[df['CAH Type'] == 'H1', 'Grid Emissions'] += km_H1 * gCO2_per_km_petrol / 1000
+df.loc[df['CAH Type'] == 'H2', 'Grid Emissions'] += km_H2 * gCO2_per_km_petrol / 1000
+df.loc[df['CAH Type'] == 'H3', 'Grid Emissions'] += km_H3 * gCO2_per_km_petrol / 1000
 
 # Calculate additional columns
 df['Grid Cost'] = df['Grid Import'] * pounds_per_kwh
@@ -43,4 +53,4 @@ results = results[['Archetype', 'CAH Type', 'Operation', 'Solar', 'Grid Import',
 
 
 # Save the averaged results to a new CSV file
-results.to_csv('./data/simulation_results/averaged_simulation_results.csv', index=False)
+results.to_csv(f'./data/simulation_results/averaged_simulation_results_{type}.csv', index=False)

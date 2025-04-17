@@ -9,23 +9,24 @@ bi_best_reduction = pd.read_csv('./data/simulation_results/national_level/percen
 bi_worst_reduction = pd.read_csv('./data/simulation_results/national_level/percentage_reduction_bi_worst.csv')
 
 # Rename columns in all dataframes to change 'H+P = P' to 'P'
-def rename_columns(df):
-    df.columns = [col.replace('H+P = P', 'P') for col in df.columns]
-    return df
+# def rename_columns(df):
+#     df.columns = [col.replace('H+P = P', 'P') for col in df.columns]
+#     return df
 
 # Apply renaming to all dataframes
-uni_best_reduction = rename_columns(uni_best_reduction)
-uni_worst_reduction = rename_columns(uni_worst_reduction)
-bi_best_reduction = rename_columns(bi_best_reduction)
-bi_worst_reduction = rename_columns(bi_worst_reduction)
+# uni_best_reduction = rename_columns(uni_best_reduction)
+# uni_worst_reduction = rename_columns(uni_worst_reduction)
+# bi_best_reduction = rename_columns(bi_best_reduction)
+# bi_worst_reduction = rename_columns(bi_worst_reduction)
 
 # Custom color palette
-custom_colors = ['#88a1cf', '#ff8556', '#a4de52', '#f684c6', '#39c5a3', '#39c5a3']
+custom_colors = ['#88a1cf', '#ff8556', '#a4de52', '#f684c6', '#39c5a3', '#39c5a3', '#37c5b3']
 highlight_color = '#79DAE8'  # Color that pops the most
 
 # Assign specific colors to scenarios
 custom_palette = {
     'P': custom_colors[0],  # Changed from 'H+P'
+    'H+P': custom_colors[6],
     'H+E+P': custom_colors[3],
     'H+E': custom_colors[1],
     'E+P': custom_colors[2],
@@ -44,18 +45,18 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
     for scenario in combined_scenarios:
         color = custom_palette.get(scenario, 'grey')
 
-        if scenario == 'P':  # Changed from 'H+P'
-            label = 'P'
+        if scenario == 'P' or scenario == 'H+P':
+            label = scenario
             # Plot combined P scenario lines in a single color
-            sns.lineplot(x='Conversion Rate (%)', y='P', data=uni_best,  # Changed from 'H+P'
+            sns.lineplot(x='Conversion Rate (%)', y=scenario, data=uni_best,
                          color=color, marker='o', linestyle='-')
-            sns.lineplot(x='Conversion Rate (%)', y='P', data=uni_worst,  # Changed from 'H+P'
+            sns.lineplot(x='Conversion Rate (%)', y=scenario, data=uni_worst,
                          color=color, marker='o', linestyle='--')
-            plt.fill_between(x=uni_best['Conversion Rate (%)'], y1=uni_best['P'],  # Changed from 'H+P'
-                             y2=uni_worst['P'], color=color, alpha=0.3)  # Changed from 'H+P'
+            plt.fill_between(x=uni_best['Conversion Rate (%)'], y1=uni_best[scenario], 
+                             y2=uni_worst[scenario], color=color, alpha=0.3) 
             # Add combined label
             max_reduction_best = uni_best.loc[uni_best['Conversion Rate (%)'] == uni_best['Conversion Rate (%)'].max(), 'P'].values[0]  # Changed from 'H+P'
-            plt.text(105, max_reduction_best, 'P', color=color, ha='left', va='center', fontsize=14)
+            plt.text(105, max_reduction_best, scenario, color=color, ha='left', va='center', fontsize=14)
         else:
             if scenario in uni_scenarios:
                 label = scenario

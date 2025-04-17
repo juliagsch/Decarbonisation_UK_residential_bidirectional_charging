@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the data from the CSV file
-file_path = './data/simulation_results/averaged_simulation_results.csv'  # Update this path as necessary
+file_path = './data/simulation_results/averaged_simulation_results_evpv.csv'  # Update this path as necessary
 data = pd.read_csv(file_path)
 
 # Adjust 'Operation' to policy categories
@@ -33,8 +33,8 @@ def create_combined_chart():
                                 (data['Operation'] == 'safe_unidirectional') & 
                                 (data['Archetype'] == archetype)]
             if not filtered_uni.empty:
-                independence_l = filtered_uni[(data['Solar'] == 'worst')].iloc[0]['Independence']
-                independence_h = filtered_uni[(data['Solar'] == 'best')].iloc[0]['Independence']
+                independence_h = filtered_uni[data['Solar'] == 'best']['Independence'].mean()  # Best case
+                independence_l = filtered_uni[data['Solar'] == 'worst']['Independence'].mean()  # Worst case
                 range_value = independence_h - independence_l
 
                 # Draw rectangle for Unidirectional
@@ -48,8 +48,8 @@ def create_combined_chart():
                                (data['Operation'] == 'hybrid_bidirectional') & 
                                (data['Archetype'] == archetype)]
             if not filtered_bi.empty:
-                independence_l = filtered_bi[(data['Solar'] == 'worst')].iloc[0]['Independence']
-                independence_h = filtered_bi[(data['Solar'] == 'best')].iloc[0]['Independence']
+                independence_h = filtered_bi[data['Solar'] == 'best']['Independence'].mean()  # Best case
+                independence_l = filtered_bi[data['Solar'] == 'worst']['Independence'].mean()  # Worst case
                 range_value = independence_h - independence_l
 
                 # Draw rectangle for Bidirectional

@@ -63,9 +63,9 @@ def process_simulation(args):
 
 if __name__ == "__main__":
     archetypes = ["Detached", "Semi-detached", "Terraced"]
-    # operations = ["safe_unidirectional", "hybrid_bidirectional"]
-    operations = ["safe", "lbn", "sunlight", "soctarget", "sunlight_soctarget", "sunlight_lbn", "lbn_soctarget", "sunlight_lbn_soctarget"]
-    wfh_types = ["T1", "T2"]
+    operations = ["safe_unidirectional", "hybrid_bidirectional"]
+    # operations = ["safe", "lbn", "sunlight", "soctarget", "sunlight_soctarget", "sunlight_lbn", "lbn_soctarget", "sunlight_lbn_soctarget"]
+    wfh_types = ["T1", "T2", "T3"]
     solar_conditions = {"worst": "Lerwick_pv.txt", "best": "Weymouth_pv.txt"}
 
     output_csv = "./data/simulation_results/sizing_results.csv"
@@ -90,11 +90,3 @@ if __name__ == "__main__":
     with multiprocessing.Pool(processes=num_processes) as pool:
         results = pool.map(process_simulation, tasks)
 
-    # # Filter out failed ones
-    # results = [r for r in results if r is not None]
-
-    # # Save results to CSV
-    # df = pd.DataFrame(results)
-    # df.to_csv(output_csv, mode='a', header=not file_exists, index=False)
-
-    # print(f"Saved {len(results)} simulation results to {output_csv}")

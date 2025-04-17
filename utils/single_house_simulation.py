@@ -42,22 +42,22 @@ for archetype in archetypes:
                         continue  # Skip this solar file if it does not exist
                     
                     # Default: PV and EV scenario
-                    # command = f"./compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_ev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     # For EV only (no PV) scenario
-                    # command = f"./compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_ev_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     # For PV only (no EV) scenario
-                    # command = f"./compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_only/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     # For PV, EV, and storage scenario
-                    # command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    # command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     # For storage, EV, and PV scenario (alternative implementation)
-                    #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    #command = f"./compiled_code/bin_pv_ev_storage/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     # No EV or PV (used to generate baseline)
-                    command = f"./compiled_code/bin_nopvnoev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_{wfh_type}_UK.csv 0 4"
+                    command = f"./compiled_code/bin_nopvnoev/sim 2100 480 10 20 1 0.5 0.95 365 {house_file_path} {solar_file_path} 0.8 0.2 60.0 7.4 {op} ./data/ev_UK/merged_ev_{wfh_type}_holiday.csv 0 4"
                     
                     print("Executing command: " + command)
                     

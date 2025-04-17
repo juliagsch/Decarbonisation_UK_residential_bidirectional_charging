@@ -17,6 +17,7 @@ cah_types = ['H1', 'H2', 'H3']
 color_map = {'Uni': '#C4DDFF', 'Bi': '#79DAE8'}
 
 useLBN = True
+limit = 2000
 column = "Grid Cost"
 if(useLBN):
     column = "Total Cost"
@@ -27,7 +28,6 @@ def create_combined_opex_chart():
 
     # Initialize positions
     uni_positions = []
-    bi_positions = []
 
     # Loop through each CAH type
     for cah in cah_types:
@@ -38,8 +38,9 @@ def create_combined_opex_chart():
                 filtered = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == policy) & (data['Archetype'] == archetype)]
 
                 if len(filtered) >= 2:  # Ensure there are best and worst cases
-                    best_val = filtered.iloc[0][column]  # Best case
-                    worst_val = filtered.iloc[1][column]  # Worst case
+                    print(filtered)
+                    best_val = filtered[filtered['Solar'] == 'best'][column].mean()  # Best case
+                    worst_val = filtered[filtered['Solar'] == 'worst'][column].mean()  # Worst case
                     ci = worst_val - best_val
 
                     # Calculate the position for the current bar
@@ -55,8 +56,8 @@ def create_combined_opex_chart():
                 filtered = data[(data['CAH Type'] == cah) & (data['Operation Policy'] == policy) & (data['Archetype'] == archetype)]
 
                 if len(filtered) >= 2:  # Ensure there are best and worst cases
-                    best_val = filtered.iloc[0][column]  # Best case
-                    worst_val = filtered.iloc[1][column]  # Worst case
+                    best_val = filtered[filtered['Solar'] == 'best'][column].mean()  # Best case
+                    worst_val = filtered[filtered['Solar'] == 'worst'][column].mean()  # Worst case
                     ci = worst_val - best_val
 
                     # Use the same position as Uni
@@ -72,12 +73,12 @@ def create_combined_opex_chart():
     plt.xlabel('Archetype', fontsize=16)  # Add x-axis label
 
     # Set y-axis limit for consistency
-    plt.ylim(0, 2200)
+    plt.ylim(0, limit)
 
     # Center CAH labels between vertical lines
-    plt.text(1.0, 1750, 'CAH1', ha='center', va='top', fontsize=14, color='black')
-    plt.text(4.0, 1750, 'CAH2', ha='center', va='top', fontsize=14, color='black')
-    plt.text(7.0, 1750, 'CAH3', ha='center', va='top', fontsize=14, color='black')
+    plt.text(1.0, limit-100, 'CAH1', ha='center', va='top', fontsize=14, color='black')
+    plt.text(4.0, limit-100, 'CAH2', ha='center', va='top', fontsize=14, color='black')
+    plt.text(7.0, limit-100, 'CAH3', ha='center', va='top', fontsize=14, color='black')
 
     # Add vertical lines between CAH types to separate H1, H2, and H3
     plt.axvline(x=2.5, color='black', linestyle='--')  # Centered between T of H1 and D of H2

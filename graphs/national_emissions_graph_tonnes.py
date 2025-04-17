@@ -9,15 +9,15 @@ bi_best = pd.read_csv('./data/simulation_results/national_level/bi_best_all_scen
 bi_worst = pd.read_csv('./data/simulation_results/national_level/bi_worst_all_scenarios.csv')
 
 # Rename columns in all dataframes to change 'H+P = P' to 'P'
-def rename_columns(df):
-    df.columns = [col.replace('H+P = P', 'P') for col in df.columns]
-    return df
+# def rename_columns(df):
+#     df.columns = [col.replace('H+P = P', 'P') for col in df.columns]
+#     return df
 
 # Apply renaming to all dataframes
-uni_best = rename_columns(uni_best)
-uni_worst = rename_columns(uni_worst)
-bi_best = rename_columns(bi_best)
-bi_worst = rename_columns(bi_worst)
+# uni_best = rename_columns(uni_best)
+# uni_worst = rename_columns(uni_worst)
+# bi_best = rename_columns(bi_best)
+# bi_worst = rename_columns(bi_worst)
 
 # Function to convert emission values from kilotonnes to megatonnes
 def convert_to_megatonnes(df):
@@ -31,12 +31,13 @@ bi_best = convert_to_megatonnes(bi_best)
 bi_worst = convert_to_megatonnes(bi_worst)
 
 # Custom color palette
-custom_colors = ['#88a1cf', '#ff8556', '#a4de52', '#f684c6', '#39c5a3', '#39c5a3']
+custom_colors = ['#88a1cf', '#ff8556', '#a4de52', '#f684c6', '#39c5a3', '#39c5a3', '#37c5b3']
 highlight_color = '#79DAE8'  # Color that pops the most
 
 # Assign specific colors to scenarios
 custom_palette = {
-    'H+P': custom_colors[0],
+    'P': custom_colors[0],
+    'H+P': custom_colors[5],
     'H+E+P': custom_colors[3],
     'H+E': custom_colors[1],
     'E+P': custom_colors[2],
@@ -45,7 +46,7 @@ custom_palette = {
 
 # Function to plot the graph with simplified legend and adjusted x-axis
 def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
-    plt.figure(figsize=(12, 6))  # Increase figure size for better clarity
+    plt.figure(figsize=(12, 18))  # Increase figure size for better clarity
     uni_scenarios = uni_best.columns[1:]  # Extract scenario names from uni_best
     bi_scenarios = bi_best.columns[1:]
 
@@ -55,19 +56,18 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
         color = custom_palette.get(scenario, 'grey')
         print(scenario + "----------------")
 
-        if scenario == 'P':  # Changed from 'H+P'
-            label = 'P'
-            print("P")
+        if scenario == 'P' or scenario == 'H+P':
+            label = scenario
             # Plot combined P scenario lines in a single color
-            sns.lineplot(x='Conversion Rate (%)', y='P', data=uni_best,  # Changed from 'H+P'
+            sns.lineplot(x='Conversion Rate (%)', y=scenario, data=uni_best,
                          color=color, marker='o', linestyle='-')
-            sns.lineplot(x='Conversion Rate (%)', y='P', data=uni_worst,  # Changed from 'H+P'
+            sns.lineplot(x='Conversion Rate (%)', y=scenario, data=uni_worst,
                          color=color, marker='o', linestyle='--')
-            plt.fill_between(x=uni_best['Conversion Rate (%)'], y1=uni_best['P'],  # Changed from 'H+P'
-                             y2=uni_worst['P'], color=color, alpha=0.3)  # Changed from 'H+P'
+            plt.fill_between(x=uni_best['Conversion Rate (%)'], y1=uni_best[scenario], 
+                             y2=uni_worst[scenario], color=color, alpha=0.3) 
             # Add combined label
-            max_emission_best = uni_best.loc[uni_best['Conversion Rate (%)'] == uni_best['Conversion Rate (%)'].max(), 'P'].values[0]  # Changed from 'H+P'
-            plt.text(105, max_emission_best, 'P', color=color, ha='left', va='center')
+            max_emission_best = uni_best.loc[uni_best['Conversion Rate (%)'] == uni_best['Conversion Rate (%)'].max(), scenario].values[0]
+            plt.text(105, max_emission_best, scenario, color=color, ha='left', va='center')
         else:
             if scenario in uni_scenarios:
                 label = scenario
@@ -94,7 +94,7 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
                 max_emission_best = uni_best.loc[uni_best['Conversion Rate (%)'] == uni_best['Conversion Rate (%)'].max(), scenario].values[0]
                 plt.text(105, max_emission_best, label, color=color, ha='left', va='center')
 
-            if scenario in bi_scenarios and scenario != 'H+P+E+S':
+            if scenario in bi_scenarios and scenario != 'H+P+E+S' and scenario != 'E' and scenario != 'H+E':
                 label = scenario
                 if scenario == 'H+E+P':
                     label = 'H + E + P (Bi)'
@@ -121,7 +121,7 @@ def plot_combined_graph(uni_best, uni_worst, bi_best, bi_worst, title):
     plt.xlabel('Conversion Rate (%)')
     plt.ylabel('Total CO2 Emissions (Megatonnes)')
     plt.xlim([0, 125])  # Extend x-axis to 125 to fit labels
-    plt.ylim([2, 14])  # Adjust according to your data range (2 to 14 megatonnes)
+    plt.ylim([2, 45])  # Adjust according to your data range (2 to 14 megatonnes)
     plt.xticks(range(0, 101, 10))  # Ensure ticks are only up to 100
     plt.savefig("./graphs/out/national_scenarios.png")
     plt.show()

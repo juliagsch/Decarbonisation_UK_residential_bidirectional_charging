@@ -16,7 +16,7 @@ household_numbers = {
 conversion_rates = list(range(0, 101, 5))  # From 0 to 100 in steps of 5%
 
 # Define the scenarios to include in the output
-included_scenarios = ["E", "H+E", "H+P = P", "E+P", "H+E+P", "H+P+E+S"]
+included_scenarios = ["E", "H+E", "H+P", "P", "E+P", "H+E+P", "H+P+E+S"]
 
 # Process the data to compute total emissions for each operation and solar combination
 def compute_total_emissions(operation, solar):
