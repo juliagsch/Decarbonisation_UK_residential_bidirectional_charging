@@ -18,27 +18,33 @@ df["Scenario"] = df["Scenario"].str.strip()
 df["Operation"] = df["Operation"].str.strip()
 df["Solar"] = df["Solar"].str.strip()
 
+for archetype in household_numbers:
+    df.loc[df["Archetype"] == archetype, "Emissions (kg CO2)"] *= household_numbers[archetype]
+
+group_cols = [col for col in df.columns if col not in ["Archetype", "Emissions (kg CO2)"]]
+df = df.groupby(group_cols, as_index=False)["Emissions (kg CO2)"].sum()
+
+print(df)
 # Filter and extract base case
 base = df[df["Scenario"] == "W"]
-base_lookup = base.set_index(["Archetype", "Solar"])["Emissions (kg CO2)"].to_dict()
+base_lookup = base.set_index(["Solar"])["Emissions (kg CO2)"].to_dict()
 
 # Compute % reduction from base case
-df["Base"] = df.apply(lambda row: base_lookup[(row["Archetype"], row["Solar"])], axis=1)
+df["Base"] = df.apply(lambda row: base_lookup[(row["Solar"])], axis=1)
 df["Reduction (%)"] = 100 * (df["Base"] - df["Emissions (kg CO2)"]) / df["Base"]
 
 # Drop the W rows (base case)
 df = df[df["Scenario"] != "W"]
 
 # Drop the bidirectional rows in cases without EV
-# df = df[~(~df["Scenario"].str.contains("E") & (df["Operation"] == "bi"))]
+df = df[~(~df["Scenario"].str.contains("E") & (df["Operation"] == "bi"))]
 
 # Label each scenario
-# df["ScenarioLabel"] = np.where(
-#     df["Scenario"].str.contains("E"),
-#     df["Scenario"] + " (" + df["Operation"] + ")",
-#     df["Scenario"]
-# )
-df["ScenarioLabel"] = df["Scenario"] + " (" + df["Operation"] + ")"
+df["ScenarioLabel"] = np.where(
+    df["Scenario"].str.contains("E"),
+    df["Scenario"] + " (" + df["Operation"] + ")",
+    df["Scenario"]
+)
 print(df)
 # Group by scenario and solar condition, average across archetypes
 grouped = df.groupby(["ScenarioLabel", "Solar"])["Reduction (%)"].agg(["mean", "min", "max"]).reset_index()
@@ -61,6 +67,7 @@ plot_df = pd.DataFrame({
 # Sort for better visualization
 plot_df = plot_df.sort_values(by="Mean Reduction (%)", ascending=True)
 
+print(plot_df)
 # Plot
 plt.figure(figsize=(14, 6))
 sns.barplot(data=plot_df, x="Scenario", y="Mean Reduction (%)", palette="viridis")
@@ -78,4 +85,5 @@ plt.xticks(rotation=45, ha="right")
 plt.ylabel("CO₂ Reduction (%)")
 plt.title("Average Emission Reduction by Scenario")
 plt.tight_layout()
+plt.savefig("./graphs/out/national_scenarios_percentage_bar.png")
 plt.show()
